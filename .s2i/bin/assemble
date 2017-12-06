@@ -13,8 +13,8 @@ tar xzf auth-header.tar.gz --strip 1
 curl -JL -o auth-noauth.tar.gz "https://apache.org/dyn/closer.cgi?action=download&filename=guacamole/$GUACAMOLE_VERSION/binary/guacamole-auth-noauth-$GUACAMOLE_VERSION.tar.gz"
 tar xzf auth-noauth.tar.gz --strip 1
 mv *.jar /opt/webserver/extensions/
-#ln -s /mnt/guacamole.properties /opt/webserver/guacamole.properties
-#ln -s /mnt/guac-config.xml /opt/webserver/guac-config.xml
+ln -s /mnt/guacamole.properties /opt/webserver/guacamole.properties
+ln -s /mnt/guac-config.xml /opt/webserver/guac-config.xml
 
 curl -JL -o /opt/webserver/webapps/ROOT.war "https://apache.org/dyn/closer.cgi?action=download&filename=guacamole/$GUACAMOLE_VERSION/binary/guacamole-$GUACAMOLE_VERSION.war"
 
