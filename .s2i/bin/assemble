@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -e
+shopt -s dotglob
+
+
+GUACAMOLE_VERSION=${GUACAMOLE_VERSION:="0.9.13-incubating"}
+
+cd /tmp/src
+mkdir -p /opt/webserver/extensions
+curl -JL -o auth-header.tar.gz "https://apache.org/dyn/closer.cgi?action=download&filename=guacamole/$GUACAMOLE_VERSION/binary/guacamole-auth-header-$GUACAMOLE_VERSION.tar.gz"
+tar xzf auth-header.tar.gz --strip 1
+curl -JL -o auth-noauth.tar.gz "https://apache.org/dyn/closer.cgi?action=download&filename=guacamole/$GUACAMOLE_VERSION/binary/guacamole-auth-noauth-$GUACAMOLE_VERSION.tar.gz"
+tar xzf auth-noauth.tar.gz --strip 1
+mv *.jar /opt/webserver/extensions/
+
+curl -JL -o /opt/webserver/webapps/ROOT.war "https://apache.org/dyn/closer.cgi?action=download&filename=guacamole/$GUACAMOLE_VERSION/binary/guacamole-$GUACAMOLE_VERSION.war"
+
+
+#mv /tmp/src/app/* $DEST
+
+# Fix source directory permissions
+#fix-permissions $DEST
